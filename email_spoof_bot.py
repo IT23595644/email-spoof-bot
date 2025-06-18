@@ -90,10 +90,14 @@ def send_email(spoofed_from, to_email, subject, message):
     msg.set_content(message)
 
     try:
+        # ✅ Correct Gmail SMTP with STARTTLS
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.login(GMAIL_USER, GMAIL_PASS)
+            server.ehlo()
+            server.starttls()           # STARTTLS must be called before login
+            server.ehlo()
+            server.login(os.getenv("GMAIL_USER"), os.getenv("GMAIL_PASS"))  # App password only
             server.send_message(msg)
-        return "✅ Email sent successfully via Gmail SMTP!"
+        return "✅ Spoofed email sent via Gmail!"
     except Exception as e:
         return f"❌ Error: {e}"
 
