@@ -54,7 +54,7 @@ async def get_from(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def get_to(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['to'] = update.message.text
-    await update.message.reply_text("📝 What's the *email subject*?", parse_mode='Markdown')
+    await update.message.reply_text("📝 What's the *email subject* ?", parse_mode='Markdown')
     return SUBJECT
 
 async def get_subject(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -124,4 +124,4 @@ def main():
     app.run_polling()
 
 if __name__ == "__main__":
-    main()
+    main() 
