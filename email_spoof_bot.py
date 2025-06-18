@@ -90,7 +90,7 @@ def send_email(spoofed_from, to_email, subject, message):
     msg.set_content(message)
 
     try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 587) as server:
             server.login(GMAIL_USER, GMAIL_PASS)
             server.send_message(msg)
         return "✅ Email sent successfully via Gmail SMTP!"
